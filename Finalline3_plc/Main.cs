@@ -844,6 +844,10 @@ namespace Finalline3_plc
                                 writeFile5.WriteLine(laze);
                                 writeFile5.Close();
                             }
+                            if (LOGIN.code == "X-12652-018")
+                            {
+
+                            }    
                         }
                         if (plc.IsConnected)
                         {
