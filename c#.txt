@@ -1,0 +1,22 @@
+More than one DbContext was found. Specify which one to use. Use the '-Context' parameter for PowerShell commands and the '--context' parameter for dotnet commands.
+
+
+Install-package System.Data.SqlClient -Version 3.1.30
+Install-package Microsoft.EntityFrameworkCore -Version 3.1.30
+Install-package Microsoft.EntityFrameworkCore.SqlServer -Version 3.1.30
+Install-package Microsoft.EntityFrameworkCore.Design -Version 3.1.30
+Install-package Microsoft.Extensions.DependencyInjection -Version 3.1.30
+Install-package Microsoft.Extensions.Logging.Console -Version 3.1.30
+Install-package Microsoft.EntityFrameworkCore.Design -Version 3.1.30
+
+
+
+
+
+
+
+
+
+
+
+Scaffold-DbContext "Data Source=LAPTOP-HHB4TH2C\SQLEXPRESS;Initial Catalog=Library;Integrated Security=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
