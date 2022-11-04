@@ -3,4 +3,5 @@ Cải tiến trạm kiểm tra điện cuối cùng Auto line 3 thay thế sử 
 
 
 Đấu IN/OUT 
-![image](https://user-images.githubusercontent.com/65277610/199868473-c2dacdac-a018-4d2b-a87a-fc1c05766332.png)
+![image](https://user-images.githubusercontent.com/65277610/199868571-231743d6-d3d0-4daf-9a77-292405f24934.png)
+
