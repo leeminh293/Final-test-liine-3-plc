@@ -34,7 +34,7 @@ namespace Finalline3_plc
         private MessageBasedSession GPIB;
         double tanso, soluong = 0, idmax, freq;
         int[] result = new int[6];
-        string Dstyle, path,path1,path2,path3,path4,laze;
+        string Dstyle, path,path1,path2,path3,path4,pathdelphi,laze;
         double imax, imin, qmin, qmax, imin64, imax64, i, q, rdc, rac, f, err_i, err_q, err_rac, err_rdc, racmin, racmax, rdcmin, rdcmax, z_min, z_max, z;
         string hkmc, dnke, pncode, filein, qrcode, hkmcpn, dstyle, dstyle1, symbol, link, symbol_label, makhachhang, clip, whitetap, startt, divat, nu;
 
@@ -420,7 +420,7 @@ namespace Finalline3_plc
                 GPIB.Write("MEAS");
                 GPIB.Write("MEAS:LEV 1V");
                 GPIB.Write("MEAS:FUNC:L;Q");
-                GPIB.Write("MEAS: FREQ " + freq + "");
+                GPIB.Write("MEAS: FREQ 125000");
                 Rac_max.Visible = false;
                 Rac_min.Visible = false;
                 label11.Visible = false;
@@ -692,7 +692,7 @@ namespace Finalline3_plc
                         GPIB.Write("MEAS");
                         GPIB.Write("MEAS:LEV 1V");
                         GPIB.Write("MEAS:FUNC:L;Q");
-                        GPIB.Write("MEAS: FREQ " + freq + "");
+                        GPIB.Write("MEAS: FREQ 125000");
                     }
                     else if (testtu == "1")
                     {
@@ -835,19 +835,43 @@ namespace Finalline3_plc
                         {
                             if (LOGIN.code == "X-12652-003")
                             {
-                                LASER_IN.Visible = true;
-                                laze = "41951" + DateTime.Now.ToString("yy") + "" + ngayy + symbol + string.Format("{0:0000}", soluong) + "";
-                                LASER_IN.Text = laze;
-                                string pathdelphi = "I:\\DATABASEline3\\LASER marking\\lazedelphi.txt";
-                                FileStream fsdelphi = new FileStream(pathdelphi, FileMode.Open, FileAccess.Write);
-                                StreamWriter writeFile5 = new StreamWriter(fsdelphi, Encoding.ASCII);
-                                writeFile5.WriteLine(laze);
-                                writeFile5.Close();
+                                try
+                                {
+                                    LASER_IN.Visible = true;
+                                    laze = "41951" + DateTime.Now.ToString("yy") + "" + ngayy + symbol + string.Format("{0:0000}", soluong) + "";
+                                    LASER_IN.Text = laze;
+                                    pathdelphi = "I:\\DATABASEline3\\LASER marking\\lazedelphi.txt";
+                                    FileStream fsdelphi = new FileStream(pathdelphi, FileMode.OpenOrCreate, FileAccess.Write);
+                                    StreamWriter writeFile5 = new StreamWriter(fsdelphi, Encoding.ASCII);
+                                    writeFile5.WriteLine(laze);
+                                    writeFile5.Close();
+                                }
+                                catch 
+                                {
+                                    File.Delete(pathdelphi);
+                                    throw;
+                                }
                             }
                             if (LOGIN.code == "X-12652-018")
                             {
-
-                            }    
+                                try
+                                {
+                                    LASER_IN.Visible = true;
+                                    laze = "P10001577#28742206" + "T" + DateTime.Now.ToString("yyyyMMdd") + "" + string.Format("{000000}", soluong) + "V500979#U";
+                                    LASER_IN.Text = laze;
+                                    pathdelphi = "I:\\DATABASEline3\\LASER marking\\lazedelphi.txt";
+                                    FileStream fsdelphi = new FileStream(pathdelphi, FileMode.OpenOrCreate, FileAccess.Write);
+                                    StreamWriter writeFile5 = new StreamWriter(fsdelphi, Encoding.ASCII);
+                                    writeFile5.WriteLine(laze);
+                                    writeFile5.Close();
+                                }
+                                catch 
+                                {
+                                    File.Delete(pathdelphi);
+                                    throw;
+                                }
+                               
+                            }
                         }
                         if (plc.IsConnected)
                         {
